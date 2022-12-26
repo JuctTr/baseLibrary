@@ -1,0 +1,15 @@
+{
+  "name": "base-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm && node ./build/pre-install",
+    "postinstall": "node ./build/post-install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "JuctTr",
+  "license": "ISC",
+  "devDependencies": {}
+}
