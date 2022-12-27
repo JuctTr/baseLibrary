@@ -446,3 +446,27 @@ node .husky/scripts/replace-img-path.js
 
 pnpm exec lint-staged --allow-empty
 ```
+
+### Git 提交信息规范
+
+#### commitlint
+
+官网：https://commitlint.js.org/#/
+
+```bash
+pnpm install @commitlint/cli @commitlint/config-conventional -D
+```
+
+添加`.commitlintrc.js`文件
+
+```javascript
+module.exports = {
+    extends: ['@commitlint/config-conventional']
+}
+```
+
+```bash
+npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAMS"
+```
+
+在`.husky`目录下多出了`commit-msg`脚本文件，输入一个错误的 commit 信息，commitlint 会自动抛出错误并退出。
