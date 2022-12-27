@@ -5,5 +5,5 @@ node .husky/scripts/copy-img.js
 
 node .husky/scripts/replace-img-path.js
 
-
+pnpm exec lint-staged --allow-empty
 

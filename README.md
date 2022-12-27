@@ -88,16 +88,16 @@ npm ERR!     /Users/username/.npm/_logs/2022-12-26T13_38_33_479Z-debug.log
 
 ```javascript
 #!/usr/bin/env node
-console.log("npm_execpath", process.env.npm_execpath);
-console.log("npm_config_user_agent", process.env.npm_config_user_agent);
-console.log("【⚠️注意】=> ", "请使用pnpm包管理工具哦");
+console.log('npm_execpath', process.env.npm_execpath)
+console.log('npm_config_user_agent', process.env.npm_config_user_agent)
+console.log('【⚠️注意】=> ', '请使用pnpm包管理工具哦')
 ```
 
 添加`post-install.js`文件
 
 ```js
 #!/usr/bin/env node
-console.log("【⚠️注意】=> ", "使用pnpm install 后执行");
+console.log('【⚠️注意】=> ', '使用pnpm install 后执行')
 ```
 
 效果如下：
@@ -147,47 +147,47 @@ https://docs.npmjs.com/cli/v8/using-npm/scripts#npm-install
 新增`copy-img.js`文件
 
 ```js
-const path = require("path");
-const fs = require("fs");
+const path = require('path')
+const fs = require('fs')
 
 function copyTyporaImgToProjectAssets() {
-  // Typora 软件存放图片的位置
-  const typoraImgDir = path.resolve(
-    process.env.HOME,
-    "Library/Application Support/typora-user-images"
-  );
-  // 项目存放图片的位置
-  const assetsDir = path.resolve(process.cwd(), "assets/images");
+    // Typora 软件存放图片的位置
+    const typoraImgDir = path.resolve(
+        process.env.HOME,
+        'Library/Application Support/typora-user-images'
+    )
+    // 项目存放图片的位置
+    const assetsDir = path.resolve(process.cwd(), 'assets/images')
 
-  // 读取typoraImgDir目录所有图片
-  const allImgs = fs.readdirSync(typoraImgDir);
-  // 把当天添加的图片，都复制到项目图片目录来
-  const year = new Date().getFullYear().toString();
-  const month = (new Date().getMonth() + 1).toString();
-  const day = new Date().getDate().toString();
+    // 读取typoraImgDir目录所有图片
+    const allImgs = fs.readdirSync(typoraImgDir)
+    // 把当天添加的图片，都复制到项目图片目录来
+    const year = new Date().getFullYear().toString()
+    const month = (new Date().getMonth() + 1).toString()
+    const day = new Date().getDate().toString()
 
-  const toDay = year + month + day;
+    const toDay = year + month + day
 
-  console.log("【当前日期】=> ", toDay);
+    console.log('【当前日期】=> ', toDay)
 
-  const toDayImgs = allImgs.filter((item) => {
-    const m = item.match(/image-(\d{0,8})/);
-    if (!m.length) return false;
-    const mDay = m[1] || "";
-    if (mDay === toDay) return true;
-  });
-  toDayImgs.forEach((item) => {
-    const localImgDir = path.resolve(typoraImgDir, item);
-    const assetsImgDir = path.resolve(assetsDir, item);
-    fs.copyFileSync(localImgDir, assetsImgDir);
-  });
+    const toDayImgs = allImgs.filter(item => {
+        const m = item.match(/image-(\d{0,8})/)
+        if (!m.length) return false
+        const mDay = m[1] || ''
+        if (mDay === toDay) return true
+    })
+    toDayImgs.forEach(item => {
+        const localImgDir = path.resolve(typoraImgDir, item)
+        const assetsImgDir = path.resolve(assetsDir, item)
+        fs.copyFileSync(localImgDir, assetsImgDir)
+    })
 }
 
-copyTyporaImgToProjectAssets();
+copyTyporaImgToProjectAssets()
 
 module.exports = {
-  copyTyporaImgToProjectAssets,
-};
+    copyTyporaImgToProjectAssets
+}
 ```
 
 新增一个 node 脚本`replace-img-path.js`：
@@ -263,7 +263,7 @@ module.exports = {
 
 ```
 
-ps：f**k，一开始没想到用node来搞，还一直去折腾Linux命令，还写了一个shell脚本🤡
+ps：f\*\*k，一开始没想到用 node 来搞，还一直去折腾 Linux 命令，还写了一个 shell 脚本 🤡
 
 ## git hooks
 
@@ -273,7 +273,7 @@ ps：f**k，一开始没想到用node来搞，还一直去折腾Linux命令，�
 
 当你提交或推送时，你可以用它来提示你的提交信息，运行测试，提示代码等。husky 支持所有的 Git 钩子。
 
-关于husky具体如何高效使用，可以自行查阅官网。
+关于 husky 具体如何高效使用，可以自行查阅官网。
 
 #### 自动安装
 
@@ -300,7 +300,7 @@ Progress: resolved 1, reused 0, downloaded 0, added 0
 
 可以看到我们的项目根目录生成了`.husky`文件，该文件中有一个`pre-commit`脚本，那么我们就可以在这里执行我们的`replace-img-path.js`脚本，替换图片的路径：
 
-在.husky新建scripts目录，把我们写好的`copy-img.js`和`replace-img-path.js`文件放进去即可。
+在.husky 新建 scripts 目录，把我们写好的`copy-img.js`和`replace-img-path.js`文件放进去即可。
 
 ```shell
 #!/usr/bin/env sh
@@ -317,12 +317,11 @@ node .husky/scripts/replace-img-path.js
 
 这块细节不会讲太多，只是罗列一下步骤。
 
-> 注意⚠️：安装完`eslint`和`prettier`相关的插件包，在验证是否生效前，建议重启一下编辑器。
-
+> 注意 ⚠️：安装完`eslint`和`prettier`相关的插件包，在验证是否生效前，建议重启一下编辑器。
 
 ![image-20221227203720419](./assets/images/image-20221227203720419.png)
 
-项目新建`.vscode` 文件，加入`settings.json` 
+项目新建`.vscode` 文件，加入`settings.json`
 
 ```json
 {
@@ -355,7 +354,7 @@ pnpm i typescript @typescript-eslint/eslint-plugin@latest @typescript-eslint/par
  pnpm i prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 
-.prettierrc.js文件
+.prettierrc.js 文件
 
 ```javascript
 module.exports = {
@@ -366,7 +365,7 @@ module.exports = {
 }
 ```
 
-.eslintrc.js文件
+.eslintrc.js 文件
 
 ```javascript
 module.exports = {
@@ -409,17 +408,41 @@ eslints 这一块里面每一个字段的含义，大家自行查阅，不过我
 pnpm i lint-staged -D
 ```
 
+package.json 文件添加如下代码（只是一个示例）：
 
+可以自行调整，比如你项目是 React 技术栈，那么可以增加.jsx,.tsx 的校验，如果项目是 Vue 技术栈，可以增加.vue 的校验。。。。。。
 
+```json
+{
+    ...
+    "lint-staged": {
+        "*.{ts,js}": [
+            "eslint --cache --fix"
+        ],
+        "**/(package|tsconfig(.*)?).json": [
+            "prettier --write"
+        ],
+        "(pnpm-workspace|.github/**/*).{yml,yaml}": [
+            "prettier --write"
+        ],
+        "((.github/**/*)|(README|CHANGELOG)|(**/(README|CHANGELOG))).md": [
+            "prettier --write"
+        ]
+    }
+  ...
+}
 
+```
 
+`.husky/pre-commit` 文件中添加：
 
+```bash
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
+node .husky/scripts/copy-img.js
 
+node .husky/scripts/replace-img-path.js
 
-
-
-
-
-
-
+pnpm exec lint-staged --allow-empty
+```

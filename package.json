@@ -20,7 +20,22 @@
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
         "husky": "^8.0.0",
+        "lint-staged": "^13.1.0",
         "prettier": "^2.8.1",
         "typescript": "^4.9.4"
+    },
+    "lint-staged": {
+        "*.{ts,js}": [
+            "eslint --cache --fix"
+        ],
+        "**/(package|tsconfig(.*)?).json": [
+            "prettier --write"
+        ],
+        "(pnpm-workspace|.github/**/*).{yml,yaml}": [
+            "prettier --write"
+        ],
+        "((.github/**/*)|(README|CHANGELOG)|(**/(README|CHANGELOG))).md": [
+            "prettier --write"
+        ]
     }
 }
