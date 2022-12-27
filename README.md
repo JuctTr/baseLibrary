@@ -1,7 +1,6 @@
 # baseLibrary
+
 搭建一个基础组件库的过程
-
-
 
 ## 初始化项目
 
@@ -26,7 +25,7 @@ Wrote to /Users/wangyicong/Desktop/baseLibrary/package.json
 
 ## 统一项目包管理器
 
-强制使用pnpm来初始化我们的项目
+强制使用 pnpm 来初始化我们的项目
 
 在`package.json`文件中，加入一下脚本
 
@@ -63,7 +62,7 @@ npm ERR! code ELIFECYCLE
 npm ERR! errno 1
 npm ERR! base-library@1.0.0 preinstall: `npx only-allow pnpm`
 npm ERR! Exit status 1
-npm ERR! 
+npm ERR!
 npm ERR! Failed at the base-library@1.0.0 preinstall script.
 npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
 
@@ -92,7 +91,6 @@ npm ERR!     /Users/username/.npm/_logs/2022-12-26T13_38_33_479Z-debug.log
 console.log("npm_execpath", process.env.npm_execpath);
 console.log("npm_config_user_agent", process.env.npm_config_user_agent);
 console.log("【⚠️注意】=> ", "请使用pnpm包管理工具哦");
-
 ```
 
 添加`post-install.js`文件
@@ -123,39 +121,194 @@ npm_config_user_agent pnpm/7.17.1 npm/? node/v14.19.3 darwin x64
 Done in 3s
 ```
 
-
-
 ### 参考来源
 
 [下一代的前端工具链 vite ](https://github.com/vitejs/vite)
 
-[【若川视野 x 源码共读】16期 - preinstall钩子和only-allow](https://juejin.cn/post/7091984044166447141)
+[【若川视野 x 源码共读】16 期 - preinstall 钩子和 only-allow](https://juejin.cn/post/7091984044166447141)
 
 https://docs.npmjs.com/cli/v8/using-npm/scripts#npm-install
 
-
-
 ## 小插曲
 
-在上一节中，我考虑我使用`Typora`写md文档时，难免会在本地复制粘贴一些图片，我们来看路径长什么样？
+在上一节中，我考虑我使用`Typora`写 md 文档时，难免会在本地复制粘贴一些图片，我们来看路径长什么样？
 
 这样：`/Users/username/Library/Application Support/typora-user-images/image-20221226221413625.png`
 
-那么我可不可以把以上的路径，在`git commit`之前，把他扭转为`项目根路径/assets/img/image-20221226221413625.png`，再commit？
+那么我可不可以把以上的路径，在`git commit`之前，把他扭转为`项目根路径/assets/images/image-20221226221413625.png`，再 commit？
 
+用我的蹩脚 shell 命令，搞一个脚本来解决这个问题。
 
+不废话，两个目的：
 
-![image-20221226221413625](./assets/images/image-20221226221413625.png)
+1. 把`/Users/username/Library/Application Support/typora-user-images/`目录下的文件，复制到项目根目录下的`/assets/images/`
+2. `git commit`之前，把`*.md`文档中，所有的`/Users/username/Library/Application Support/typora-user-images/，` 替换为`./assets/images/`
 
+新增`copy-img.js`文件
 
+```js
+const path = require("path");
+const fs = require("fs");
 
-![](./assets/images/image-20221227002739240.png)
+function copyTyporaImgToProjectAssets() {
+  // Typora 软件存放图片的位置
+  const typoraImgDir = path.resolve(
+    process.env.HOME,
+    "Library/Application Support/typora-user-images"
+  );
+  // 项目存放图片的位置
+  const assetsDir = path.resolve(process.cwd(), "assets/images");
 
+  // 读取typoraImgDir目录所有图片
+  const allImgs = fs.readdirSync(typoraImgDir);
+  // 把当天添加的图片，都复制到项目图片目录来
+  const year = new Date().getFullYear().toString();
+  const month = (new Date().getMonth() + 1).toString();
+  const day = new Date().getDate().toString();
 
+  const toDay = year + month + day;
 
-![image-20221227003015671](./assets/images/image-20221227003015671.png)
+  console.log("【当前日期】=> ", toDay);
 
+  const toDayImgs = allImgs.filter((item) => {
+    const m = item.match(/image-(\d{0,8})/);
+    if (!m.length) return false;
+    const mDay = m[1] || "";
+    if (mDay === toDay) return true;
+  });
+  toDayImgs.forEach((item) => {
+    const localImgDir = path.resolve(typoraImgDir, item);
+    const assetsImgDir = path.resolve(assetsDir, item);
+    fs.copyFileSync(localImgDir, assetsImgDir);
+  });
+}
 
+copyTyporaImgToProjectAssets();
 
+module.exports = {
+  copyTyporaImgToProjectAssets,
+};
+```
 
+新增一个 node 脚本`replace-img-path.js`：
 
+脚本有点简陋，凑合着看
+
+```shell
+const path = require("path");
+const fs = require("fs");
+const chalk = require("chalk");
+const { spawn } = require("child_process");
+
+const HOME_DIR = process.env.HOME;
+
+const CWD = process.cwd();
+
+const DEFAULT_OPTION = {
+  filesDir: CWD,
+  extension: ".md",
+  matchContent: "",
+  targetContent: "",
+};
+
+function replaceFileContent(options = DEFAULT_OPTION) {
+  const { filesDir, extension, matchContent, targetContent } = options;
+
+  fs.readdir(filesDir, "utf8", function (err, files) {
+    if (err) return console.log(chalk.redBright(`【读取目录出错】=> `, err));
+
+    //根据后缀名筛选要操作的文件
+    const targetFiles = files.filter(function (file) {
+      return path.extname(file).toLowerCase() === extension;
+    });
+
+    if (!targetFiles.length) return null;
+
+    targetFiles.forEach((item) => {
+      const targetFilePath = path.join(filesDir, item);
+
+      console.log("【pre-commit】=> 变更文件", targetFilePath);
+
+      fs.readFile(targetFilePath, "utf8", function (err, data) {
+        if (err)
+          return console.log(chalk.redBright(`【读取文件出错】=> `, err));
+        const result = data.replace(
+          new RegExp(matchContent, "g"),
+          targetContent
+        );
+        fs.writeFile(targetFilePath, result, "utf8", function (err) {
+          if (err)
+            return console.log(chalk.redBright(`【写入文件出错】=> `, err));
+          console.log(
+            chalk.greenBright("【pre-commit】=> ", "替换图片路径成功～")
+          );
+          // 提交该文件
+          spawn("git", ["add", targetFilePath]);
+        });
+      });
+    });
+  });
+}
+
+replaceFileContent({
+  filesDir: CWD,
+  extension: ".md",
+  matchContent: `${HOME_DIR}/Library/Application Support/typora-user-images`,
+  targetContent: "./assets/images",
+});
+
+module.exports = {
+  replaceFileContent,
+};
+
+```
+
+ps：f**k，一开始没想到用node来搞，还一直去折腾Linux命令，还写了一个shell脚本🤡
+
+## git hooks
+
+那么如何在`git commit`之前，执行我们写的脚本呢？
+
+### [husky](https://typicode.github.io/husky/#/)
+
+当你提交或推送时，你可以用它来提示你的提交信息，运行测试，提示代码等。husky 支持所有的 Git 钩子。
+
+关于husky具体如何高效使用，可以自行查阅官网。
+
+#### 自动安装
+
+```bash
+username@usernamedeMBP baseLibrary % pnpm dlx husky-init && pnpm install
+.../Library/pnpm/store/v3/tmp/dlx-19030  |   +2 +
+.../Library/pnpm/store/v3/tmp/dlx-19030  | Progress: resolved 2, reused 2, downloaded 0, added 2, done
+husky-init updating package.json
+  "husky install" command already exists in prepare script, skipping.
+husky - Git hooks installed
+husky - created .husky/pre-commit
+
+please review changes in package.json
+Packages: +1
++
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: /Users/username/Library/pnpm/store/v3
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 1, reused 0, downloaded 0, added 0
+.......
+.......
+忽略
+```
+
+可以看到我们的项目根目录生成了`.husky`文件，该文件中有一个`pre-commit`脚本，那么我们就可以在这里执行我们的`replace-img-path.js`脚本，替换图片的路径：
+
+在.husky新建scripts目录，把我们写好的`copy-img.js`和`replace-img-path.js`文件放进去即可。
+
+```shell
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+node .husky/scripts/copy-img.js
+
+node .husky/scripts/replace-img-path.js
+```
+
+读者可以根据自己电脑的路径，稍微修改脚本内容。
