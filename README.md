@@ -312,3 +312,114 @@ node .husky/scripts/replace-img-path.js
 ```
 
 读者可以根据自己电脑的路径，稍微修改脚本内容。
+
+## 代码规范
+
+这块细节不会讲太多，只是罗列一下步骤。
+
+> 注意⚠️：安装完`eslint`和`prettier`相关的插件包，在验证是否生效前，建议重启一下编辑器。
+
+
+![image-20221227203720419](./assets/images/image-20221227203720419.png)
+
+项目新建`.vscode` 文件，加入`settings.json` 
+
+```json
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+}
+```
+
+### eslint
+
+```bash
+pnpm i eslint -D
+```
+
+```bash
+npx eslint --init
+```
+
+![image-20221227195858787](./assets/images/image-20221227195858787.png)
+
+或
+
+```bash
+pnpm i typescript @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest -D
+```
+
+### prettier
+
+```bash
+ pnpm i prettier eslint-config-prettier eslint-plugin-prettier -D
+```
+
+.prettierrc.js文件
+
+```javascript
+module.exports = {
+    singleQuote: true,
+    semi: false,
+    arrowParens: 'avoid',
+    trailingComma: 'none'
+}
+```
+
+.eslintrc.js文件
+
+```javascript
+module.exports = {
+    env: {
+        browser: true,
+        commonjs: true,
+        es6: true,
+        node: true
+    },
+    globals: {},
+    extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+        // 用来覆盖 ESLint 本身的规则配置
+        'prettier',
+        'plugin:prettier/recommended'
+    ],
+    overrides: [],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {},
+    // eslint-plugin-prettier 用于让 Prettier 来接管eslint --fix即修复代码的能力
+    plugins: ['@typescript-eslint', 'prettier'],
+    rules: {
+        'prettier/prettier': 'error'
+    }
+}
+```
+
+检查编辑器输出这块，没有报错一般就没有问题。
+
+![image-20221227210915504](./assets/images/image-20221227210915504.png)
+
+eslints 这一块里面每一个字段的含义，大家自行查阅，不过我建议可以看看成熟的开源项目，不太建议看官网
+
+### Lint-staged
+
+只对存入`暂存区`的文件进行 Lint 检查，大大提高`commit`代码的效率。
+
+```bash
+pnpm i lint-staged -D
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
