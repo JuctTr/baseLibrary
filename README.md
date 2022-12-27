@@ -135,9 +135,25 @@ https://docs.npmjs.com/cli/v8/using-npm/scripts#npm-install
 
 
 
+## 小插曲
+
+在上一节中，我考虑我使用`Typora`写md文档时，难免会在本地复制粘贴一些图片，我们来看路径长什么样？
+
+这样：`/Users/username/Library/Application Support/typora-user-images/image-20221226221413625.png`
+
+那么我可不可以把以上的路径，在`git commit`之前，把他扭转为`项目根路径/assets/img/image-20221226221413625.png`，再commit？
 
 
 
+![image-20221226221413625](./assets/images/image-20221226221413625.png)
+
+
+
+![](./assets/images/image-20221227002739240.png)
+
+
+
+![image-20221227003015671](./assets/images/image-20221227003015671.png)
 
 
 
