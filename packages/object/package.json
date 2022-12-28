@@ -1,0 +1,24 @@
+{
+    "name": "@base/object",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "rimraf dist && tsc",
+        "test": "pnpm run test:types",
+        "test:types": "tsc --noEmit"
+    },
+    "keywords": [],
+    "author": "jucttr",
+    "license": "ISC",
+    "devDependencies": {
+        "tsd": "^0.25.0"
+    },
+    "tsd": {
+        "directory": "__tests__"
+    }
+}

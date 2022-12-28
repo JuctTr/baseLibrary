@@ -121,6 +121,30 @@ npm_config_user_agent pnpm/7.17.1 npm/? node/v14.19.3 darwin x64
 Done in 3s
 ```
 
+当然我们也可以不使用`npx only-allow pnpm`，也可以自己写一个脚本如下：
+
+```bash
+const agent = process.env.npm_config_user_agent
+const { error } = console
+
+if (!agent.startsWith('pnpm')) {
+    error('\n 在这个仓库中，请使用 pnpm 来管理依赖。$ npm i pnpm -g\n')
+    process.exit(1)
+}
+```
+
+使用：
+
+```json
+{
+	...
+  "scripts": {
+		"preinstall": "node ./build/pre-install",
+  },
+	...
+}
+```
+
 ### 参考来源
 
 [下一代的前端工具链 vite ](https://github.com/vitejs/vite)
@@ -326,9 +350,14 @@ node .husky/scripts/replace-img-path.js
 ```json
 {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
 }
 ```
+
+你也可以根据你自己的情况，调整配置
 
 ### eslint
 
@@ -404,6 +433,8 @@ eslints 这一块里面每一个字段的含义，大家自行查阅，不过我
 
 只对存入`暂存区`的文件进行 Lint 检查，大大提高`commit`代码的效率。
 
+官方仓库：https://github.com/okonet/lint-staged
+
 ```bash
 pnpm i lint-staged -D
 ```
@@ -465,8 +496,14 @@ module.exports = {
 }
 ```
 
+添加 git hooks：
+
 ```bash
 npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAMS"
 ```
 
 在`.husky`目录下多出了`commit-msg`脚本文件，输入一个错误的 commit 信息，commitlint 会自动抛出错误并退出。
+
+## 多包依赖管理
+
+参考文章：https://www.raulmelo.dev/blog/replacing-lerna-and-yarn-with-pnpm-workspaces
