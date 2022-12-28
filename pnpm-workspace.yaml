@@ -1,0 +1,4 @@
+# “工作区”工具，我们可以使用它来在我们的 monorepo 中创建包之间的依赖关系
+# 中文官网：https://pnpm.io/zh/workspaces
+packages:
+    - 'packages/*'

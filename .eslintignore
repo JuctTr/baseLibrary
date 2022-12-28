@@ -4,4 +4,6 @@ dist/*
 # ignore d.ts
 **/*.d.ts
 
+.eslintcache
+
 
