@@ -4,8 +4,9 @@
  */
 
 import shuffleArray from './lib/shuffle'
+import isArray from './lib/isArray'
 
 /**
  * @export
  */
-export { shuffleArray }
+export { isArray, shuffleArray }

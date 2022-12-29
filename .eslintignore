@@ -6,5 +6,6 @@ dist/*
 
 .eslintcache
 packages/**/dist/*
+coverage/
 
 
