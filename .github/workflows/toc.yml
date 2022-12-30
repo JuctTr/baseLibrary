@@ -1,0 +1,13 @@
+# 官网：https://github.com/marketplace/actions/toc-generator
+
+name: TOC Generator
+on:
+    # 每当 push 到 master 分支时触发部署
+    push:
+        branches: [master]
+jobs:
+    generateTOC:
+        name: TOC Generator
+        runs-on: ubuntu-latest
+        steps:
+            - uses: technote-space/toc-generator@v4
