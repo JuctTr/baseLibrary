@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**目录**
+
+- [使用指南](#%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)
+  - [安装](#%E5%AE%89%E8%A3%85)
+    - [为啥要`-w`呢？](#%E4%B8%BA%E5%95%A5%E8%A6%81-w%E5%91%A2)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 使用指南
 
 ## 安装
