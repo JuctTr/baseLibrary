@@ -11,3 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: technote-space/toc-generator@v4
+              with:
+                TARGET_PATHS: '*.md'
+                COMMIT_MESSAGE: 'chore(docs): update *.md 目录'
+                TOC_TITLE: '**目录**'
