@@ -3,6 +3,10 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "engines": {
+        "node": ">=14",
+        "pnpm": ">=7"
+    },
     "scripts": {
         "preinstall": "npx only-allow pnpm && node ./build/pre-install",
         "postinstall": "node ./build/post-install",
