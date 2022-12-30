@@ -1,7 +1,7 @@
 {
-    "name": "@base/object",
+    "name": "@base/test",
     "version": "1.0.0",
-    "description": "",
+    "description": "一系列的数组工具方法",
     "main": "./dist/cjs/index.js",
     "module": "./dist/es/index.js",
     "exports": {
@@ -21,7 +21,7 @@
         "node": ">=14.0.0"
     },
     "scripts": {
-        "build": "rimraf dist && tsc",
+        "build": "rimraf dist && vite build",
         "test": "pnpm run test:types",
         "test:types": "tsc --noEmit"
     },

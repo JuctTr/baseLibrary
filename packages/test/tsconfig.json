@@ -1,0 +1,9 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "include": ["./index.ts", "types/**/*"],
+    "compileOnSave": true,
+    "compilerOptions": {
+        "outDir": "./dist", // 指定输出路径
+        "declarationDir": "./dist"
+    }
+}

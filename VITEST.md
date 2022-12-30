@@ -33,6 +33,8 @@ ignore-workspace-root-check=true
 
 官方文档：https://docs.npmjs.com/cli/v9/configuring-npm/npmrc
 
+pnpm文档：https://pnpm.io/zh/npmrc
+
 
 
 简单看了一下vitest，一大堆配置，目前不想深入了解这些，暂时不更新，项目中只是加了简单的script命令，跑通一下而已，后续用到，看一些开源项目进行学习。
