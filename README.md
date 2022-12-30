@@ -1,31 +1,32 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [baseLibrary](#baselibrary)
-  - [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
-  - [统一项目包管理器](#%E7%BB%9F%E4%B8%80%E9%A1%B9%E7%9B%AE%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
-  - [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
-  - [git hooks](#git-hooks)
-    - [husky](#husky)
-      - [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
-  - [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
-    - [eslint](#eslint)
-    - [prettier](#prettier)
-    - [Lint-staged](#lint-staged)
-    - [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
-      - [commitlint](#commitlint)
-  - [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
-  - [资产打包](#%E8%B5%84%E4%BA%A7%E6%89%93%E5%8C%85)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
+-   [baseLibrary](#baselibrary)
+    -   [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
+    -   [统一项目包管理器](#%E7%BB%9F%E4%B8%80%E9%A1%B9%E7%9B%AE%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
+    -   [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
+    -   [git hooks](#git-hooks)
+        -   [husky](#husky)
+            -   [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
+    -   [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
+        -   [eslint](#eslint)
+        -   [prettier](#prettier)
+        -   [Lint-staged](#lint-staged)
+        -   [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
+            -   [commitlint](#commitlint)
+    -   [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
+    -   [资产打包](#%E8%B5%84%E4%BA%A7%E6%89%93%E5%8C%85)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # baseLibrary
 
-本项目描述搭建一个基础工具库的工程化流程
+本项目描述搭建一个基础工具库的工程化流程。
 
 ## 初始化项目
 
@@ -56,7 +57,7 @@ Wrote to /Users/wangyicong/Desktop/baseLibrary/package.json
 }
 ```
 
-## 统一项目包管理器
+## 包管理器
 
 强制使用 pnpm 来初始化我们的项目
 
@@ -546,6 +547,14 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 在`.husky`目录下多出了`commit-msg`脚本文件，输入一个错误的 commit 信息，commitlint 会自动抛出错误并退出。
 
+## 代码打包
+
+**......待更新**
+
+### 参考来源
+
+[使用 Vite 和 TypeScript 带你从零打造一个属于自己的 Vue3 组件库](https://www.51cto.com/article/715946.html)
+
 ## 多包依赖管理
 
 **......待更新**
@@ -554,10 +563,6 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 https://www.raulmelo.dev/blog/replacing-lerna-and-yarn-with-pnpm-workspaces
 
-## 资产打包
+## 包版本更新和发布
 
-**......待更新**
-
-### 参考来源
-
-[使用 Vite 和 TypeScript 带你从零打造一个属于自己的 Vue3 组件库](https://www.51cto.com/article/715946.html)
+## 自动化部署
