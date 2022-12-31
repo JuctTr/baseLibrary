@@ -1,7 +1,7 @@
 {
-    "name": "@base/test",
-    "version": "0.0.1",
-    "description": "一系列的数组工具方法",
+    "name": "@jucttr/test",
+    "version": "0.0.2",
+    "description": "一个测试发布流程的包",
     "main": "./dist/cjs/index.js",
     "module": "./dist/es/index.js",
     "exports": {

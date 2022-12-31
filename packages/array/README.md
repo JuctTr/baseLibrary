@@ -1,13 +1,12 @@
-# object
+# Array utils
 
-对象操作库
+数组工具库
 
 ## 安装
 
 ```bash
-npm i -S @base/object --registry=http://registry.xxxxxx.com
+npm i -S @jucttr/array --registry=https://registry.npmjs.org/
+
 ```
 
 ## 使用
-
-[@base/object](http://xxxxxx.com/xxx/static/docs/module-@base_object.html)

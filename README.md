@@ -1,27 +1,28 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **目录**
 
-- [baseLibrary](#baselibrary)
-  - [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
-  - [包管理器](#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
-  - [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
-  - [git hooks](#git-hooks)
-    - [husky](#husky)
-      - [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
-  - [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
-    - [eslint](#eslint)
-    - [prettier](#prettier)
-    - [Lint-staged](#lint-staged)
-    - [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
-      - [commitlint](#commitlint)
-  - [代码打包](#%E4%BB%A3%E7%A0%81%E6%89%93%E5%8C%85)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
-  - [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
-  - [包版本更新和发布](#%E5%8C%85%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E5%92%8C%E5%8F%91%E5%B8%83)
-  - [自动化部署](#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2)
+-   [baseLibrary](#baselibrary)
+    -   [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
+    -   [包管理器](#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
+    -   [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
+    -   [git hooks](#git-hooks)
+        -   [husky](#husky)
+            -   [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
+    -   [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
+        -   [eslint](#eslint)
+        -   [prettier](#prettier)
+        -   [Lint-staged](#lint-staged)
+        -   [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
+            -   [commitlint](#commitlint)
+    -   [代码打包](#%E4%BB%A3%E7%A0%81%E6%89%93%E5%8C%85)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
+    -   [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
+    -   [包版本更新和发布](#%E5%8C%85%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E5%92%8C%E5%8F%91%E5%B8%83)
+    -   [自动化部署](#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -565,5 +566,109 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 https://www.raulmelo.dev/blog/replacing-lerna-and-yarn-with-pnpm-workspaces
 
 ## 包版本更新和发布
+
+### 新手指南
+
+1. 去官网注册一个 npm 账号；
+
+2. 进到某一个包的目录，执行`pnpm publish`
+
+    ```bash
+    username@usernamedeMacBook-Pro test % pnpm publish
+    npm notice
+    npm notice 📦  @base/test@1.0.0
+    npm notice === Tarball Contents ===
+    npm notice 288B  dist/index.js
+    npm notice 434B  dist/lib/is-plain-object.js
+    npm notice 746B  package.json
+    npm notice 197B  README.md
+    npm notice 255B  dist/index.d.ts
+    npm notice 0     types/index.d.ts
+    npm notice 335B  dist/lib/is-plain-object.d.ts
+    npm notice 399B  lib/is-plain-object.ts
+    npm notice 1.1kB LICENSE
+    npm notice === Tarball Details ===
+    npm notice name:          @base/test
+    npm notice version:       1.0.0
+    npm notice package size:  1.9 kB
+    npm notice unpacked size: 3.7 kB
+    npm notice shasum:        x x x x x x x x x x x x x x x
+    npm notice integrity:     x x x x x x x x x x x x x x x
+    npm notice total files:   9
+    npm notice
+    npm ERR! code E404
+    npm ERR! 404 Not Found - PUT https://registry.npmjs.org/@base%2ftest - Not found
+    npm ERR! 404
+    npm ERR! 404  '@base/test@1.0.0' is not in the npm registry.
+    npm ERR! 404 You should bug the author to publish it (or use the name yourself!)
+    npm ERR! 404
+    npm ERR! 404 Note that you can also install from a
+    npm ERR! 404 tarball, folder, http url, or git url.
+
+    npm ERR! A complete log of this run can be found in:
+    npm ERR!     /Users/username/.npm/_logs/2022-12-30T14_07_03_959Z-debug.log
+    ```
+
+    说明你的没有登陆的你的账户，请登陆：
+
+    ```bash
+    username@usernamedeMacBook-Pro test % pnpm login
+    Username: jucttr
+    Password:
+    Email: (this IS public) xxxxxxxxxx@qq.com // 输入你的邮箱
+    npm notice Please check your email for a one-time password (OTP)
+    Enter one-time password: xxxxxx // 验证码
+    Logged in as jucttr on https://registry.npmjs.org/.
+    ```
+
+    再次执行`pnpm publish`，出现：
+
+    ```bash
+    username@usernamedeMacBook-Pro test % pnpm publish
+    // ...... 忽略 ......
+    npm notice
+    npm ERR! code E402
+    npm ERR! 402 Payment Required - PUT https://registry.npmjs.org/@base%2ftest - You must sign up for private packages
+
+    npm ERR! A complete log of this run can be found in:
+    npm ERR!     /Users/username/.npm/_logs/2022-12-30T14_10_14_957Z-debug.log
+    ```
+
+    说是要付费。。。。。。，`npm publish`会默认发布为私有包，但是 npm 的私有包需要付费，所以需要添加如下参数进行发布:
+
+    ```bash
+    pnpm publish --access public
+    ```
+
+    ```bash
+     ERR_PNPM_GIT_UNCLEAN  Unclean working tree. Commit or stash changes first.
+
+    If you want to disable Git checks on publish, set the "git-checks" setting to "false", or run again with "--no-git-checks".
+    ```
+
+    发布时，会检查你的 git 工作区是否干净，我么可以在.npmrc 文件中设置 git-checks=false，或者
+
+    ```bash
+    pnpm publish --access public --no-git-checks
+    ```
+
+    如果你在发布时遇到 npm 404 Err 的错误，如下所示，由于 404 错误有很多种情况，我这里罗列我遇到的一种，就是我的用户名和我发布的包名不一致。
+
+    ```bash
+    npm ERR! code E404
+    npm ERR! 404 Not Found - PUT https://registry.npmjs.org/@base%2ftest - Not found
+    npm ERR! 404
+    npm ERR! 404  '@base/test@0.0.1' is not in the npm registry.
+    npm ERR! 404 You should bug the author to publish it (or use the name yourself!)
+    npm ERR! 404
+    npm ERR! 404 Note that you can also install from a
+    npm ERR! 404 tarball, folder, http url, or git url.
+    ```
+
+    由于我的包名使用了`scoped`（作用范围），所以我的包名@后面要和我的 npm 账户用户名一致。
+
+    详情请见：https://docs.npmjs.com/creating-and-publishing-scoped-public-packages
+
+3. 去官网查看是否发布成功；
 
 ## 自动化部署

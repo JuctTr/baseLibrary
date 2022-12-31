@@ -44,6 +44,18 @@ importers:
     devDependencies:
       tsd: 0.25.0
 
+  packages/object:
+    specifiers:
+      tsd: ^0.25.0
+    devDependencies:
+      tsd: 0.25.0
+
+  packages/test:
+    specifiers:
+      tsd: ^0.25.0
+    devDependencies:
+      tsd: 0.25.0
+
 packages:
 
   /@babel/code-frame/7.18.6:

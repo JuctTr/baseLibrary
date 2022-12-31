@@ -1,13 +1,11 @@
-# object
+## 描述
 
-对象操作库
+一个测试发布流程的包
 
 ## 安装
 
 ```bash
-npm i -S @base/object --registry=http://registry.xxxxxx.com
+npm i -S @jucttr/test --registry=https://registry.npmjs.org/
 ```
 
 ## 使用
-
-[@base/object](http://xxxxxx.com/xxx/static/docs/module-@base_object.html)
