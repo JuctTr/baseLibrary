@@ -12,7 +12,10 @@
         "postinstall": "node ./build/post-install",
         "prepare": "husky install",
         "test": "vitest",
-        "coverage": "vitest run --coverage"
+        "coverage": "vitest run --coverage",
+        "docs:dev": "pnpm --filter ./web-docs docs:dev",
+        "docs:build": "pnpm --filter ./web-docs docs:build",
+        "docs:preview": "pnpm --filter ./web-docs docs:preview"
     },
     "keywords": [],
     "author": "JuctTr",
@@ -33,7 +36,8 @@
         "rimraf": "^3.0.2",
         "typescript": "^4.9.4",
         "vite": "^4.0.3",
-        "vitest": "^0.26.2"
+        "vitest": "^0.26.2",
+        "vue": "^3.2.45"
     },
     "lint-staged": {
         "*.{ts,js}": [

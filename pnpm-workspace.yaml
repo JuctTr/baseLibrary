@@ -2,3 +2,4 @@
 # 中文官网：https://pnpm.io/zh/workspaces
 packages:
     - 'packages/*'
+    - 'web-docs'

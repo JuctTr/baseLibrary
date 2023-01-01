@@ -26,3 +26,4 @@ dist-ssr
 
 .eslintcache
 coverage/
+web-docs/**/**/cache/*

@@ -7,5 +7,6 @@ dist/*
 .eslintcache
 packages/**/dist/*
 coverage/
+web-docs/**/**/cache/*
 
 

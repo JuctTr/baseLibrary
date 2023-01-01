@@ -197,7 +197,7 @@ https://docs.npmjs.com/cli/v8/using-npm/scripts#npm-install
 
 那么我可不可以把以上的路径，在`git commit`之前，把他扭转为`项目根路径/assets/images/image-20221226221413625.png`，再 commit？
 
-用我的蹩脚 shell 命令，搞一个脚本来解决这个问题。
+~~用我的蹩脚 shell 命令，搞一个脚本来解决这个问题。~~
 
 不废话，两个目的：
 
@@ -563,7 +563,7 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 ### 参考来源
 
-https://www.raulmelo.dev/blog/replacing-lerna-and-yarn-with-pnpm-workspaces
+-   [Replacing Lerna + Yarn with PNPM Workspaces](https://www.raulmelo.dev/blog/replacing-lerna-and-yarn-with-pnpm-workspaces)
 
 ## 包版本更新和发布
 
