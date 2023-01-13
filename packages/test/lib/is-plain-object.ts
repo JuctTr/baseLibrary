@@ -14,3 +14,5 @@
 export default function isPlainObject(val: object) {
     return Object.prototype.toString.call(val) === '[object Object]'
 }
+
+// 我来做一点小修改
