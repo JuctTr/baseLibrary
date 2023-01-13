@@ -16,7 +16,7 @@
         "docs:dev": "pnpm --filter ./web-docs docs:dev",
         "docs:build": "pnpm --filter ./web-docs docs:build",
         "docs:preview": "pnpm --filter ./web-docs docs:preview",
-        "up:version": "lerna version"
+        "up:version": "lerna version --conventional-commits"
     },
     "keywords": [],
     "author": "JuctTr",
