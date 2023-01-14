@@ -1,6 +1,6 @@
 {
     "name": "@jucttr/array",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "一系列的数组工具方法",
     "main": "./dist/cjs/index.js",
     "module": "./dist/es/index.js",

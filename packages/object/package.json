@@ -1,6 +1,6 @@
 {
     "name": "@jucttr/object",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "",
     "main": "./dist/cjs/index.js",
     "module": "./dist/es/index.js",
