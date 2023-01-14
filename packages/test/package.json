@@ -1,6 +1,6 @@
 {
     "name": "@jucttr/test",
-    "version": "0.1.0",
+    "version": "0.0.3-beta.2",
     "description": "一个测试发布流程的包",
     "main": "./dist/cjs/index.js",
     "module": "./dist/es/index.js",
@@ -23,7 +23,8 @@
     "scripts": {
         "build": "rimraf dist && vite build",
         "test": "pnpm run test:types",
-        "test:types": "tsc --noEmit"
+        "test:types": "tsc --noEmit",
+        "prepublish": "pnpm build"
     },
     "keywords": [],
     "author": "jucttr",

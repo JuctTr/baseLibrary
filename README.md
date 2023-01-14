@@ -1,29 +1,30 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **目录**
 
-- [baseLibrary](#baselibrary)
-  - [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
-  - [包管理器](#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
-    - [总结](#%E6%80%BB%E7%BB%93)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
-  - [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
-  - [Git Hooks](#git-hooks)
-    - [husky](#husky)
-      - [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
-  - [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
-    - [eslint](#eslint)
-    - [prettier](#prettier)
-    - [Lint-staged](#lint-staged)
-    - [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
-      - [commitlint](#commitlint)
-  - [代码打包](#%E4%BB%A3%E7%A0%81%E6%89%93%E5%8C%85)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
-  - [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
-  - [包版本更新和发布](#%E5%8C%85%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E5%92%8C%E5%8F%91%E5%B8%83)
-    - [新手指南](#%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97)
-  - [自动化部署](#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2)
+-   [baseLibrary](#baselibrary)
+    -   [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
+    -   [包管理器](#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
+        -   [总结](#%E6%80%BB%E7%BB%93)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
+    -   [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
+    -   [Git Hooks](#git-hooks)
+        -   [husky](#husky)
+            -   [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
+    -   [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
+        -   [eslint](#eslint)
+        -   [prettier](#prettier)
+        -   [Lint-staged](#lint-staged)
+        -   [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
+            -   [commitlint](#commitlint)
+    -   [代码打包](#%E4%BB%A3%E7%A0%81%E6%89%93%E5%8C%85)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
+    -   [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
+    -   [包版本更新和发布](#%E5%8C%85%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E5%92%8C%E5%8F%91%E5%B8%83)
+        -   [新手指南](#%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97)
+    -   [自动化部署](#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -575,6 +576,8 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 ### 新手指南
 
+以下是不借助第三方工具，仅仅是使用`pnpm`自带的`publish`的命令，发布一个公共包的流程。
+
 1. 去官网注册一个 npm 账号；
 
 2. 进到某一个包的目录，执行`pnpm publish`
@@ -677,7 +680,99 @@ npx husky add .husky/commit-msg "npx --no-install commitlint -e $HUSKY_GIT_PARAM
 
 3. 去官网查看是否发布成功；
 
-参考来源
+### 借助 Lerna
+
+#### 安装 Lerna
+
+```bash
+npm install lerna@latest -g
+或
+pnpm add lerna@latest --save-dev -w
+```
+
+#### 初始化
+
+```bash
+lerna init
+```
+
+根目录生成了`lerna.json`文件，我们也加入一些配置：
+
+```json
+{
+    "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+    "useWorkspaces": true, // 使用工作空间
+    "npmClient": "pnpm", // 包管理工具为 pnpm
+    "version": "independent", // 独立发包，这个的意思就是，当我们执行lerna version，不要把所有的packages都一并升级版本，独立开来，可以单独对改动的包升级版本即可
+    "command": {
+        "version": {
+            "allowBranch": ["main", "master"], // 只允许 master 和 main 分支执行 lerna version 并push
+            "message": "chore(release): publish %s" // lerna version 命令 commit 的 message
+        }
+    }
+}
+```
+
+配置文档：https://lerna.js.org/docs/api-reference/configuration
+
+> 默认情况下，Lerna 使用 package.json 中的 workspaces 属性来搜索软件包。关于这个属性的详细信息，请参见 npm 文档或 Yarn 文档。
+>
+> **如果你使用的是 pnpm，你可能已经在 lerna.json 中把 npmClient 设置为 pnpm。在这种情况下，Lerna 将使用 pnpm-workspace.yaml 中的 packages 属性来搜索包。关于这个属性的细节，请参见 pnpm 文档。**
+>
+> 如果你使用的是旧版本的 Lerna 或者明确选择不使用工作空间，那么 Lerna 将使用 lerna.json 中的 packages 属性来搜索软件包。
+
+我们尝试修改`@jucttr/test`包中的`lib/index.ts`文件：
+
+```typescript
++ // 我来做一点小修改
+```
+
+这个时候，我们肯定不能够一把梭直接发布，一般是先发布一个`beta`版本，假如目前线上的版本为`0.0.2`，那么该我们的`beta`版本命名就为`0.0.3-beta.0`，接下来我们手动修改`test/package.json`中的`version
+
+```json
+{
+    "name": "@jucttr/test",
+    "version": "0.0.3-beta.0",
+    "description": "一个测试发布流程的包"
+    // ......
+}
+```
+
+这里注意，发布前一定要先`pnpm build`，不然`dist`目录还是旧的代码；我们也可以往`script`字段中加入如下脚本：
+
+```json
+{
+  		// ......
+      "scripts": {
+        "build": "rimraf dist && vite build",
+        "test": "pnpm run test:types",
+        "test:types": "tsc --noEmit",
++       "prepublish": "pnpm build"
+    }
+  	// ......
+}
+```
+
+单独发布，执行以下命令：
+
+```bash
+pnpm publish --access public --no-git-checks --tag=beta
+```
+
+我们去 npm 官网查看，可以注意到`beta`版本和`latest`是分开的。
+
+![image-20230114141459734](./assets/images/image-20230114141459734.png)
+
+经历了改啊改啊改啊，调啊调啊调啊，`0.0.3-beta.0、0.0.3-beta.1、0.0.3-beta.2、0.0.3-beta.3 ......`，👌，终于来到了正式版本。
+
+确保我们的包没问题了，那么我们就把修改的代码提交
+
+### 参与开发注意事项
+
+1. 禁止使用 lerna 自带的`bootstrap、link和add` 命令。取而代之，你应该直接使用 pnpm 命令来管理依赖关系（https://pnpm.io/cli/install）。
+2.
+
+### 参考来源
 
 [如何规范地发布一个现代化的 NPM 包？](https://mp.weixin.qq.com/s/5_2zEMLjNhDlZIdcLtORFg)
 
