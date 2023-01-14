@@ -23,7 +23,8 @@
     "scripts": {
         "build": "rimraf dist && vite build",
         "test": "pnpm run test:types",
-        "test:types": "tsc --noEmit"
+        "test:types": "tsc --noEmit",
+        "prepublish": "pnpm build"
     },
     "keywords": [],
     "author": "jucttr",
