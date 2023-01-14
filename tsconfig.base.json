@@ -58,9 +58,9 @@
         // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
         "sourceMap": true /* 为输出的JavaScript文件创建源映射文件。 */,
         // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
-        "outDir": "./dist" /* 为所有输出/生成的文件指定一个输出文件夹。 */,
+        // "outDir": "./dist"                                /* 为所有输出/生成的文件指定一个输出文件夹。 */,
         // "removeComments": true,                           /* 禁止输出注释 */
-        "noEmit": false /* 禁止从编译中生成文件。 表示只做类型检查，而不会输出产物文件 */,
+        // "noEmit": false                                   /* 禁止从编译中生成文件。 表示只做类型检查，而不会输出产物文件 */,
         // "importHelpers": true,                            /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
         // "importsNotUsedAsValues": "remove",               /* Specify emit/checking behavior for imports that are only used for types. */
         // "downlevelIteration": true,                       /* Emit more compliant, but verbose and less performant JavaScript for iteration. */

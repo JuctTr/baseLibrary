@@ -5,9 +5,12 @@
     "main": "./dist/cjs/index.js",
     "module": "./dist/es/index.js",
     "exports": {
-        "import": "./dist/es/index.js",
-        "types": "./types/index.d.ts",
-        "default": "./dist/cjs/index.js"
+        ".": {
+            "import": "./dist/es/index.js",
+            "types": "./types/index.d.ts",
+            "default": "./dist/cjs/index.js"
+        },
+        "./package.json": "./package.json"
     },
     "types": "./types/index.d.ts",
     "files": [
@@ -21,7 +24,7 @@
         "node": ">=14.0.0"
     },
     "scripts": {
-        "build": "rimraf dist && tsc",
+        "build": "rimraf dist && vite build",
         "test": "pnpm run test:types",
         "test:types": "tsc --noEmit",
         "prepublish": "pnpm build"

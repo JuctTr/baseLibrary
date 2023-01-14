@@ -9,7 +9,7 @@
  * @returns {boolean}
  * @function isArray
  */
-export default function isArray(val) {
+export default function isArray(val: any) {
     return (
         Object.prototype.toString
             .call(val)
