@@ -1,34 +1,35 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **目录**
 
-- [baseLibrary](#baselibrary)
-  - [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
-  - [包管理器](#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
-    - [总结](#%E6%80%BB%E7%BB%93)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
-  - [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
-  - [Git Hooks](#git-hooks)
-    - [husky](#husky)
-      - [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
-  - [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
-    - [eslint](#eslint)
-    - [prettier](#prettier)
-    - [Lint-staged](#lint-staged)
-    - [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
-      - [commitlint](#commitlint)
-  - [代码打包](#%E4%BB%A3%E7%A0%81%E6%89%93%E5%8C%85)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
-  - [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
-  - [包版本更新和发布](#%E5%8C%85%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E5%92%8C%E5%8F%91%E5%B8%83)
-    - [新手指南](#%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97)
-    - [借助 Lerna](#%E5%80%9F%E5%8A%A9-lerna)
-      - [安装 Lerna](#%E5%AE%89%E8%A3%85-lerna)
-      - [初始化](#%E5%88%9D%E5%A7%8B%E5%8C%96)
-    - [参与开发注意事项](#%E5%8F%82%E4%B8%8E%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9)
-    - [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-3)
-  - [自动化部署](#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2)
+-   [baseLibrary](#baselibrary)
+    -   [初始化项目](#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE)
+    -   [包管理器](#%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8)
+        -   [总结](#%E6%80%BB%E7%BB%93)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90)
+    -   [小插曲](#%E5%B0%8F%E6%8F%92%E6%9B%B2)
+    -   [Git Hooks](#git-hooks)
+        -   [husky](#husky)
+            -   [自动安装](#%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85)
+    -   [代码规范](#%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83)
+        -   [eslint](#eslint)
+        -   [prettier](#prettier)
+        -   [Lint-staged](#lint-staged)
+        -   [Git 提交信息规范](#git-%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83)
+            -   [commitlint](#commitlint)
+    -   [代码打包](#%E4%BB%A3%E7%A0%81%E6%89%93%E5%8C%85)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-1)
+    -   [多包依赖管理](#%E5%A4%9A%E5%8C%85%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-2)
+    -   [包版本更新和发布](#%E5%8C%85%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E5%92%8C%E5%8F%91%E5%B8%83)
+        -   [新手指南](#%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97)
+        -   [借助 Lerna](#%E5%80%9F%E5%8A%A9-lerna)
+            -   [安装 Lerna](#%E5%AE%89%E8%A3%85-lerna)
+            -   [初始化](#%E5%88%9D%E5%A7%8B%E5%8C%96)
+        -   [参与开发注意事项](#%E5%8F%82%E4%B8%8E%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9)
+        -   [参考来源](#%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90-3)
+    -   [自动化部署](#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -707,11 +708,15 @@ lerna init
     "$schema": "node_modules/lerna/schemas/lerna-schema.json",
     "useWorkspaces": true, // 使用工作空间
     "npmClient": "pnpm", // 包管理工具为 pnpm
-    "version": "independent", // 独立发包，这个的意思就是，当我们执行lerna version，不要把所有的packages都一并升级版本，独立开来，可以单独对改动的包升级版本即可
+    "version": "independent", // 独立发包，这个的意思就是，当我们执行lerna version/publish，不要把所有的packages都一并升级版本，独立开来，可以单独对改动的包升级版本即可
     "command": {
         "version": {
             "allowBranch": ["main", "master"], // 只允许 master 和 main 分支执行 lerna version 并push
             "message": "chore(release): publish %s" // lerna version 命令 commit 的 message
+        },
+        "publish": {
+            "allowBranch": ["main", "master"], // 只允许 master 和 main 分支执行 lerna publish 并push
+            "conventionalCommits": true // 生成 CHANGELOG.md 文件
         }
     }
 }
@@ -769,7 +774,39 @@ pnpm publish --access public --no-git-checks --tag=beta
 
 经历了改啊改啊改啊，调啊调啊调啊，`0.0.3-beta.0、0.0.3-beta.1、0.0.3-beta.2、0.0.3-beta.3 ......`，👌，终于来到了正式版本。
 
-确保我们的包没问题了，那么我们就把修改的代码提交
+确保我们的包没问题了，那么我们就把修改的代码提交，这里注意一下，npm 默认发布私有包，npm 的私有包需要付费，我们可以在每一个包中`package.json`，加入如下代码，均可发布成功：
+
+```json
+{
+    // ......
+    "publishConfig": {
+        "access": "public"
+    }
+    // ......
+}
+```
+
+```js
+username@usernamedeMacBook-Pro baseLibrary % npx lerna publish
+lerna notice cli v6.4.1
+lerna info versioning independent // 注意⚠️：独立发布，所有三个包的版本可以不一样
+lerna info Looking for changed packages since @jucttr/array@0.0.2
+? Select a new version for @jucttr/array (currently 0.0.2) Patch (0.0.3)
+? Select a new version for @jucttr/object (currently 0.1.1) Patch (0.1.2)
+? Select a new version for @jucttr/test (currently 0.1.2) Patch (0.1.3)
+
+Changes:
+ - @jucttr/array: 0.0.2 => 0.0.3
+ - @jucttr/object: 0.1.1 => 0.1.2
+ - @jucttr/test: 0.1.2 => 0.1.3
+
+? Are you sure you want to publish these packages? Yes
+lerna info execute Skipping releases
+lerna info git Pushing tags...
+lerna info publish Publishing packages to npm...
+// ......
+// ......
+```
 
 ### 参与开发注意事项
 
