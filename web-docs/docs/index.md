@@ -6,7 +6,7 @@ titleTemplate: 一个基础工具库
 
 hero:
     name: base library
-    text: 一个基于TS开发vite打包和的工具库
+    text: 基于vite打包和TS开发的工具库
     tagline: 提供完整搭建教程
     image:
         src: /logo.png
@@ -16,7 +16,7 @@ hero:
           text: 开始
           link: /guide/Getting-Started
         - theme: alt
-          text: 在 github 上查看
+          text: 去 github 上逛逛
           link: https://github.com/jucttr/baseLibrary
 
 features:
