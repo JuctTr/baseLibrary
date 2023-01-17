@@ -8,8 +8,9 @@
  */
 
 import isPlainObject from './lib/is-plain-object'
+import merge from './lib/merge'
 
 /**
  * @export
  */
-export { isPlainObject }
+export { isPlainObject, merge }

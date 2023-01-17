@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
-import { isPlainObject } from '../index'
+import { isPlainObject, merge } from '../index'
 
 test('should a plain object', async () => {
     const fn = vi.fn()
