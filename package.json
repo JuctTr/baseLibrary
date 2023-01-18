@@ -1,15 +1,15 @@
 {
     "name": "base-library",
     "version": "1.0.0",
-    "description": "",
+    "description": "从 零 到 一 搭建一个基础工具库的工程化流程。",
     "main": "index.js",
     "engines": {
         "node": ">=14",
         "pnpm": ">=7"
     },
     "scripts": {
-        "preinstall": "npx only-allow pnpm && node ./build/pre-install",
-        "postinstall": "node ./build/post-install",
+        "preinstall": "npx only-allow pnpm && node ./scripts/pre-install",
+        "postinstall": "node ./scripts/post-install",
         "prepare": "husky install",
         "test": "vitest",
         "test:ui": "vitest --ui",
