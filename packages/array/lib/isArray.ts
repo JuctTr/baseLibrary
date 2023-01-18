@@ -10,10 +10,12 @@
  * @function isArray
  */
 export default function isArray(val: any) {
-    return (
-        Object.prototype.toString
-            .call(val)
-            .match(/^\[object\s(.*)\]$/)[1]
-            .toLowerCase() === 'array'
-    )
+    // const type = Object.prototype.toString.call(val)
+    // const matchResult = type.match(/^\[object\s(.*)\]$/)
+    // return matchResult && matchResult[1].toLowerCase() === 'array'
+    if (Array.isArray) {
+        return Array.isArray(val)
+    } else {
+        Object.prototype.toString.call(val) === '[object Array]'
+    }
 }
