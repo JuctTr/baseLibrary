@@ -80,7 +80,7 @@
         /* Interop Constraints */
         // "isolatedModules": true /* 确保每个文件都可以安全地转译，而不依赖于其他导入。 */,
         "allowSyntheticDefaultImports": true /* 当模块没有默认导出时，允许'import x from y' */,
-        "esModuleInterop": false /* 生成额外的 JavaScript 以简化对 importing CommonJS 模块的支持。 这会启用“allowSyntheticDefaultImports”以实现类型兼容性。 */,
+        // "esModuleInterop": false                          /* 生成额外的 JavaScript 以简化对 importing CommonJS 模块的支持。 这会启用“allowSyntheticDefaultImports”以实现类型兼容性。 */,
         // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
         "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 

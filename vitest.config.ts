@@ -10,7 +10,7 @@ export default defineConfig({
     test: {
         include: ['./packages/**/*.spec.[tj]s'],
         // exclude: []
-        setupFiles: ['./packages/vitestSetup.ts']
+        setupFiles: ['./packages/vitestSetup.ts'],
         // globalSetup: ['./packages/vitestGlobalSetup.ts'],
         // testTimeout: timeout,
         // hookTimeout: timeout,
@@ -19,6 +19,8 @@ export default defineConfig({
         //     if (log.match(/experimental|jit engine|emitted file|tailwind/i))
         //         return false
         // }
+        environment: 'jsdom'
+        // environmentOptions: {}
     },
     esbuild: {
         target: 'node14'
