@@ -1,0 +1,45 @@
+{
+    "name": "@jucttr/array",
+    "version": "0.1.0",
+    "description": "一系列的数组工具方法",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/es/index.js",
+    "exports": {
+        ".": {
+            "import": "./es/index.js",
+            "types": "./es/index.d.ts",
+            "default": "./cjs/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "types": "./cjs/index.d.ts",
+    "files": [
+        "dist",
+        "!dist/**/*.map",
+        "lib",
+        "types",
+        "README.md"
+    ],
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "scripts": {
+        "build": "rimraf dist && vite build",
+        "test": "pnpm run test:types",
+        "test:types": "tsc --noEmit",
+        "prepublish": "pnpm build"
+    },
+    "keywords": [],
+    "author": "jucttr",
+    "license": "ISC",
+    "devDependencies": {
+        "tsd": "^0.25.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "tsd": {
+        "directory": "__tests__"
+    },
+    "gitHead": "61f1d26b0e169a0bce7eed45329d913fce782fcb"
+}
