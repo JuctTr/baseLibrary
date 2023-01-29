@@ -32,14 +32,8 @@
     "keywords": [],
     "author": "jucttr",
     "license": "ISC",
-    "devDependencies": {
-        "tsd": "^0.25.0"
-    },
     "publishConfig": {
         "access": "public"
-    },
-    "tsd": {
-        "directory": "__tests__"
     },
     "gitHead": "61f1d26b0e169a0bce7eed45329d913fce782fcb"
 }
