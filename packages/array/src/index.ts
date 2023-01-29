@@ -3,8 +3,8 @@
  * @author jucttr
  */
 
-import shuffleArray from './lib/shuffle'
-import isArray from './lib/isArray'
+import shuffleArray from './shuffle'
+import isArray from './isArray'
 
 /**
  * @export

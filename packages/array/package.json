@@ -7,7 +7,7 @@
     "exports": {
         ".": {
             "import": "./dist/es/index.js",
-            "types": "./types/index.d.ts",
+            "types": "./dist/es/index.d.ts",
             "default": "./dist/cjs/index.js"
         },
         "./package.json": "./package.json"
