@@ -49,10 +49,7 @@ importers:
       vue: 3.2.45
 
   packages/array:
-    specifiers:
-      tsd: ^0.25.0
-    devDependencies:
-      tsd: 0.25.0
+    specifiers: {}
 
   packages/datatime:
     specifiers:
@@ -61,25 +58,19 @@ importers:
       tsd: 0.25.0
 
   packages/object:
-    specifiers:
-      tsd: ^0.25.0
-    devDependencies:
-      tsd: 0.25.0
+    specifiers: {}
 
   packages/storage:
-    specifiers:
-      '@jucttr/object': workspace:^0.2.1
-      tsd: ^0.25.0
-    dependencies:
-      '@jucttr/object': link:../object
-    devDependencies:
-      tsd: 0.25.0
+    specifiers: {}
 
   packages/test:
-    specifiers:
-      tsd: ^0.25.0
-    devDependencies:
-      tsd: 0.25.0
+    specifiers: {}
+
+  packages/test2:
+    specifiers: {}
+
+  packages/types:
+    specifiers: {}
 
   web-docs:
     specifiers:
