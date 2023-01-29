@@ -27,3 +27,7 @@ dist-ssr
 .eslintcache
 coverage/
 web-docs/**/**/cache/*
+
+
+packages/**/cjs/*
+packages/**/es/*
