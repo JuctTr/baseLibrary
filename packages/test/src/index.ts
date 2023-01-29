@@ -3,7 +3,7 @@
  * @author jucttr
  */
 
-import isPlainObject from './lib/test'
+import isPlainObject from './test'
 
 /**
  * @export
