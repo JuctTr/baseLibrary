@@ -1,5 +1,6 @@
 import { UserConfigExport } from 'vite'
 import { builtinModules } from 'module'
+import dts from 'vite-plugin-dts'
 
 export function createConfig({ pkg, external = [] }): UserConfigExport {
     const _external = Object.keys(pkg.dependencies || {})
@@ -15,6 +16,7 @@ export function createConfig({ pkg, external = [] }): UserConfigExport {
             },
             rollupOptions: {
                 external: _external,
+                input: './src/index.ts',
                 output: [
                     {
                         format: 'cjs',
@@ -37,7 +39,15 @@ export function createConfig({ pkg, external = [] }): UserConfigExport {
                     }
                 ]
             }
-        }
+        },
+        plugins: [
+            dts({
+                outputDir: './dist/es'
+            }),
+            dts({
+                outputDir: './dist/cjs'
+            })
+        ]
     }
 }
 
