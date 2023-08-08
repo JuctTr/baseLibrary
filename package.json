@@ -4,8 +4,8 @@
     "description": "从 零 到 一 搭建一个基础工具库的工程化流程。",
     "main": "index.js",
     "engines": {
-        "node": ">=14",
-        "pnpm": ">=7"
+        "node": ">=16",
+        "pnpm": ">=8"
     },
     "scripts": {
         "preinstall": "npx only-allow pnpm && node ./scripts/pre-install",
@@ -18,7 +18,8 @@
         "docs:build": "pnpm --filter ./web-docs docs:build",
         "docs:preview": "pnpm --filter ./web-docs docs:preview",
         "up:version": "lerna version",
-        "release": "lerna publish"
+        "release": "lerna publish",
+        "create:package": "node ./scripts/create-new-package \"${npm_config_name}\""
     },
     "keywords": [],
     "author": "JuctTr",
