@@ -1,0 +1,39 @@
+{
+    "name": "@jucttr/number",
+    "version": "0.3.0",
+    "description": "一个测试发布流程的包",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/es/index.js",
+    "exports": {
+        ".": {
+            "import": "./dist/es/index.js",
+            "types": "./types/index.d.ts",
+            "default": "./dist/cjs/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "types": "./types/index.d.ts",
+    "files": [
+        "dist",
+        "!dist/**/*.map",
+        "lib",
+        "types",
+        "README.md"
+    ],
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "scripts": {
+        "build": "rimraf dist && vite build",
+        "test": "pnpm run test:types",
+        "test:types": "tsc --noEmit",
+        "prepublish": "pnpm build"
+    },
+    "keywords": [],
+    "author": "jucttr",
+    "license": "ISC",
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "61f1d26b0e169a0bce7eed45329d913fce782fcb"
+}
