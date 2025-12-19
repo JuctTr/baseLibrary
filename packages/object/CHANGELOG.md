@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.0
+
+### Major Changes
+
+-   升级
+-   ;
+
+## 1.0.0
+
+### Major Changes
+
+-   测试发布流程
+
 ## 1.0.0
 
 ### Major Changes
