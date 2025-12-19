@@ -1,18 +1,19 @@
-name: Docs Deploy
+name: Lint
+
 on:
     push:
         branches: [master]
-    workflow_dispatch: # 允许手动触发
+    pull_request:
+        branches: [master]
 
 jobs:
-    deploy:
+    lint:
+        name: Lint
         runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -25,31 +26,24 @@ jobs:
                   version: 10
 
             - name: Get pnpm store directory
-              id: pnpm-cache
               shell: bash
               run: |
                   echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+              id: pnpm-cache
 
             - name: Setup pnpm cache
               uses: actions/cache@v4
               with:
                   path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml', '**/pnpm-workspace.yaml') }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
                   restore-keys: |
                       ${{ runner.os }}-pnpm-store-
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Build packages
-              run: pnpm build
+            - name: Run ESLint
+              run: pnpm lint
 
-            - name: Build docs
-              run: pnpm docs:build
-
-            - name: Deploy
-              uses: peaceiris/actions-gh-pages@v4
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  exclude_assets: ''
-                  publish_dir: web-docs/docs/.vitepress/dist
+            - name: Check formatting
+              run: pnpm format:check

@@ -1,12 +1,19 @@
-name: Docs Deploy
+name: CI
+
 on:
     push:
         branches: [master]
-    workflow_dispatch: # 允许手动触发
+    pull_request:
+        branches: [master]
 
 jobs:
-    deploy:
+    test:
+        name: Test
         runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [20, 22]
 
         steps:
             - name: Checkout
@@ -14,10 +21,10 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Setup Node.js
+            - name: Setup Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: ${{ matrix.node-version }}
 
             - name: Install pnpm
               uses: pnpm/action-setup@v4
@@ -25,10 +32,10 @@ jobs:
                   version: 10
 
             - name: Get pnpm store directory
-              id: pnpm-cache
               shell: bash
               run: |
                   echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+              id: pnpm-cache
 
             - name: Setup pnpm cache
               uses: actions/cache@v4
@@ -41,15 +48,17 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
+            - name: Type check
+              run: pnpm test:types
+
             - name: Build packages
               run: pnpm build
 
-            - name: Build docs
-              run: pnpm docs:build
+            - name: Run tests
+              run: pnpm test
 
-            - name: Deploy
-              uses: peaceiris/actions-gh-pages@v4
+            - name: Upload coverage
+              uses: codecov/codecov-action@v4
+              if: matrix.node-version == 20
               with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  exclude_assets: ''
-                  publish_dir: web-docs/docs/.vitepress/dist
+                  file: ./coverage/lcov.info

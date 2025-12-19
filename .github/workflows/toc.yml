@@ -2,16 +2,27 @@
 
 name: TOC Generator
 on:
-    # 每当 push 到 master 分支时触发部署
     push:
         branches: [master]
+        paths:
+            - '*.md'
+            - '**/*.md'
+    workflow_dispatch: # 允许手动触发
+
 jobs:
     generateTOC:
         name: TOC Generator
         runs-on: ubuntu-latest
         steps:
-            - uses: technote-space/toc-generator@v4
+            - name: Checkout
+              uses: actions/checkout@v4
               with:
-                TARGET_PATHS: '*.md'
-                COMMIT_MESSAGE: 'chore(docs): update *.md 目录'
-                TOC_TITLE: '**目录**'
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Generate TOC
+              uses: technote-space/toc-generator@v4
+              with:
+                  TARGET_PATHS: '*.md'
+                  COMMIT_MESSAGE: 'chore(docs): update *.md 目录'
+                  TOC_TITLE: '**目录**'
+                  FOLDING: true

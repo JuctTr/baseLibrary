@@ -23,6 +23,8 @@
         "dev": "turbo run dev --filter='@jucttr/*'",
         "test:types": "turbo run test:types",
         "lint": "turbo run lint",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
         "clean": "turbo run clean && rm -rf node_modules/.turbo",
         "changeset": "changeset",
         "version-packages": "changeset version",
