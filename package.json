@@ -4,8 +4,8 @@
     "description": "从 零 到 一 搭建一个基础工具库的工程化流程。",
     "main": "index.js",
     "engines": {
-        "node": ">=16",
-        "pnpm": ">=8"
+        "node": ">=20",
+        "pnpm": ">=10"
     },
     "scripts": {
         "preinstall": "npx only-allow pnpm && node ./scripts/pre-install",

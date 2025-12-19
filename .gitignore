@@ -31,7 +31,3 @@ web-docs/**/**/cache/*
 
 packages/**/cjs/*
 packages/**/es/*
-
-
-packages/storage
-packages/datatime
