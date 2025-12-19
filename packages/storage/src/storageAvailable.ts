@@ -1,7 +1,12 @@
-export default function storageAvailable(type: string) {
-    let storage
+export default function storageAvailable(
+    type: 'localStorage' | 'sessionStorage'
+) {
+    let storage: Storage | null = null
     try {
-        storage = window[type]
+        storage = (window as any)[type]
+        if (!storage) {
+            return false
+        }
         const x = '__storage_test__'
         storage.setItem(x, x)
         storage.removeItem(x)

@@ -28,6 +28,11 @@ dist-ssr
 coverage/
 web-docs/**/**/cache/*
 
+# Turborepo
+.turbo
+node_modules/.cache
 
+# Build outputs
 packages/**/cjs/*
 packages/**/es/*
+packages/**/dist/*

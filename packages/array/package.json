@@ -24,9 +24,11 @@
         "node": ">=16"
     },
     "scripts": {
-        "build": "rimraf dist && vite build",
+        "build": "rimraf dist && tsup",
         "test": "pnpm run test:types",
         "test:types": "tsc --noEmit",
+        "clean": "rimraf dist",
+        "dev": "tsup --watch",
         "prepublish": "pnpm build"
     },
     "keywords": [],

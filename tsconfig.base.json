@@ -11,7 +11,7 @@
         // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
         /* 语言和环境 */
-        "target": "es2015" /* 为生成的 JavaScript 设置 JavaScript 语言版本并包含兼容的库声明。 */,
+        "target": "es2017" /* 为生成的 JavaScript 设置 JavaScript 语言版本并包含兼容的库声明。 */,
         "lib": [
             "DOM",
             "DOM.Iterable",
