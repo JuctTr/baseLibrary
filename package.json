@@ -2,6 +2,10 @@
     "name": "base-library",
     "version": "1.0.0",
     "description": "从 零 到 一 搭建一个基础工具库的工程化流程。",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
     "main": "index.js",
     "engines": {
         "node": ">=20",
@@ -28,7 +32,7 @@
         "clean": "turbo run clean && rm -rf node_modules/.turbo",
         "changeset": "changeset",
         "version-packages": "changeset version",
-        "release": "changeset publish",
+        "release": "changeset version && changeset publish",
         "create:package": "node ./scripts/create-new-package \"${npm_config_name}\""
     },
     "keywords": [],
